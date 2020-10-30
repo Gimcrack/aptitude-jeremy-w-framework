@@ -1,0 +1,11 @@
+if ["$1" == "test"]; then
+    echo "Publishing to Live (DRY RUN)"
+
+    rsync -avzpn --exclude push --exclude nossl-redir/ --exclude sftp-config.json --exclude .gitignore --exclude .git --exclude .development --exclude protected/Compile --exclude protected/Configs/database.php /var/www/html/aptitudecare/dev/ /var/www/html/aptitudecare/live
+
+else
+    echo "Publishing to Live"
+
+    rsync -avzp --exclude push --exclude nossl-redir/ --exclude sftp-config.json --exclude .gitignore --exclude .git --exclude .development --exclude protected/Compile/ --exclude protected/Configs/database.php /var/www/html/aptitudecare/dev/ /var/www/html/aptitudecare/live
+
+fi
